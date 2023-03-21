@@ -20,8 +20,17 @@
         public function getRoles() : array{
             return $this->_roles;
         }
-        public function setRoles(array $roles){
+        public function setRoles(Role $roles){
             array_push($this->_roles, $roles);
+        }
+
+        /* Méthode pour lister la filmographie de l'acteur */
+        public function listerFilmsParticipes(){
+            $result = "$this a joué dans ces films :<br>";
+            foreach($this->_filmsParticipes as $film){
+                $result .= "- $film<br> ";
+            }
+            return $result;
         }
     }
 ?>

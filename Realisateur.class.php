@@ -14,5 +14,14 @@
         public function setFilmsRealises(Film $filmRealise){
             array_push($this->_filmsRealises, $filmRealise);
         }
+
+        /* Méthode pour lister la filmographie du réalisateur */
+        public function listerFilmsRealises(){
+            $result = "$this a réalisé ces films :<br>";
+            foreach($this->_filmsRealises as $film){
+                $result .= "- $film<br>";
+            }
+            return $result;
+        }
     }
 ?>

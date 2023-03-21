@@ -47,7 +47,7 @@
 
     /* Méthode __toString de la classe */
     public function __toString(){
-        return $this->getNom() . " " . $this->getPrenom();
+        return $this->_prenom . " " . $this->_nom;
     }
 }
 ?>
