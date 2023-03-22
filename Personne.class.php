@@ -21,7 +21,7 @@
         $this->_nom = $nom;
     }
 
-    /* Getter et Setter pour le prenom de la personne */
+    /* Getter et Setter pour le prénom de la personne */
     public function getPrenom() : string{
         return $this->_prenom;
     }
@@ -37,7 +37,7 @@
         $this->_sexe = $sexe;
     }
 
-    /* Getter et Setter pour la date de naissance*/
+    /* Getter et Setter pour la date de naissance de la personne*/
     public function getDateNaissance(): DateTime{
         return $this->_dateNaissance;
     }

@@ -7,7 +7,7 @@
             parent::__construct($nom, $prenom, $sexe, $dateNaissance);
         }
 
-        /* Getter et Setter des films realises par le realisateur */
+        /* Getter et Setter des films réalisés par le réalisateur */
         public function getFilmsRealises(){
             return $this->_filmsRealises;
         }

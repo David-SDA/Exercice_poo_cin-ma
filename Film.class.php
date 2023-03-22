@@ -6,10 +6,10 @@
         private Realisateur $_realisateur;
         private string $_synopsis;
         private Genre $_genreCinematographique;
-        private array $_acteursFilm = [];
+        private array $_castingsFilm = [];
 
         /* Méthode __construct de la classe */
-        public function __construct(string $titre, string $dateSortie, int $duree, Realisateur $realisateur, string $synopsis, Genre $genreCinematographique, array $acteursFilm){
+        public function __construct(string $titre, string $dateSortie, int $duree, Realisateur $realisateur, string $synopsis, Genre $genreCinematographique){
             $this->_titre = $titre;
             $this->_dateSortie = new DateTime($dateSortie);
             $this->_duree = $duree;
@@ -17,12 +17,6 @@
             $this->_synopsis = $synopsis;
             $this->_genreCinematographique = $genreCinematographique;
             $this->_genreCinematographique->setFilmsGenre($this);
-            foreach($acteursFilm as $acteur){
-                array_push($this->_acteursFilm, $acteur);//Il y a plusieurs acteurs dans le film : on le sait
-            }
-            foreach($this->_acteursFilm as $acteur){
-                $acteur->setFilmsParticipes($this);//pour chaque acteurs du film, on met le film dans l'array $_filmsParticipes de l'acteur
-            }
             $this->_realisateur->setFilmsRealises($this);
         }
 
@@ -42,7 +36,7 @@
             $this->_dateSortie = new DateTime ($dateSortie);
         }
 
-        /* Getter et Setter de la duree du film */
+        /* Getter et Setter de la durée du film */
         public function getDuree() : int{
             return $this->_duree;
         }
@@ -50,7 +44,7 @@
             $this->_duree = $duree;
         }
 
-        /* Getter et Setter du realisateur du film */
+        /* Getter et Setter du réalisateur du film */
         public function getRealisateur() : Realisateur{
             return $this->_realisateur;
         }
@@ -66,7 +60,7 @@
             $this->_synopsis = $synopsis;
         }
 
-        /* Getter et Setter du genre cinematographique du film */
+        /* Getter et Setter du genre cinématographique du film */
         public function getGenreCinematograpique() : Genre{
             return $this->_genreCinematographique;
         }
@@ -74,26 +68,19 @@
             $this->_genreCinematographique = $genreCinematographique;
         }
 
-        /* Getter et Setter des acteurs du film */
-        public function getActeursFilm(){
-            return $this->_acteursFilm;
+        /* Getter et Setter des différents rôles incarnés par différents acteurs du film */
+        public function getCastingFilm(){
+            return $this->_castingsFilm;
         }
-        public function setActeursFilm(Acteur $acteursFilm){
-            array_push($this->_acteursFilm, $acteursFilm);
+        public function setCastingFilm(Casting $castingFilm){
+            array_push($this->_castingsFilm, $castingFilm);
         }
 
-        /* Méthode pour lister le casting du film */
-        public function listerActeursFilms(){
+        /* Méthode pour lister les acteurs du film */
+        public function listerCastingFilm(){
             $result = "Dans le film $this :<br>";
-            foreach($this->_acteursFilm as $acteur){
-                foreach($acteur->getRoles() as $role){
-                    foreach($role->getFilmsConcernes() as $film){
-                        if(strcmp($film->getTitre(), $this->_titre) == 0)
-                        {
-                            $result .= "- " . $role->getNomRole() . " a été incarné par $acteur<br>";
-                        }
-                    }
-                }
+            foreach($this->_castingsFilm as $casting){
+                $result .= "- " . $casting->getRoleCasting() . " a été incarné par " . $casting->getActeurCasting() . "<br>";
             }
             return $result;
         }

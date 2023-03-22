@@ -8,7 +8,7 @@
             $this->_nomGenre = $nomGenre;
         }
 
-        /* Getter et Setter du nom du genre cinématographique */
+        /* Getter et Setter du nom de ce genre cinématographique */
         public function getNomGenre() : string{
             return $this->_nomGenre;
         }
